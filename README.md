@@ -188,7 +188,3 @@ SpyCatAgency/
 └── postman_collection.json # Postman collection
 ```
 
-## License
-
-MIT
-
