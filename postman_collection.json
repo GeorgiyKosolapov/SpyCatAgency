@@ -1,0 +1,228 @@
+{
+  "info": {
+    "name": "Spy Cat Agency API",
+    "description": "API collection for managing spy cats, missions, and targets",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost:8080"
+    }
+  ],
+  "item": [
+    {
+      "name": "Health Check",
+      "item": [
+        {
+          "name": "Health Check",
+          "request": {
+            "method": "GET",
+            "url": "{{base_url}}/",
+            "header": []
+          }
+        }
+      ]
+    },
+    {
+      "name": "Spy Cats",
+      "item": [
+        {
+          "name": "Create Spy Cat",
+          "request": {
+            "method": "POST",
+            "url": "{{base_url}}/cats/",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"name\": \"Whiskers\",\n    \"years_of_experience\": 5,\n    \"breed\": \"Persian\",\n    \"salary\": 50000.00\n}"
+            }
+          }
+        },
+        {
+          "name": "List All Spy Cats",
+          "request": {
+            "method": "GET",
+            "url": "{{base_url}}/cats/",
+            "header": []
+          }
+        },
+        {
+          "name": "Get Single Spy Cat",
+          "request": {
+            "method": "GET",
+            "url": "{{base_url}}/cats/1",
+            "header": []
+          }
+        },
+        {
+          "name": "Update Spy Cat Salary",
+          "request": {
+            "method": "PATCH",
+            "url": "{{base_url}}/cats/1",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"salary\": 60000.00\n}"
+            }
+          }
+        },
+        {
+          "name": "Delete Spy Cat",
+          "request": {
+            "method": "DELETE",
+            "url": "{{base_url}}/cats/1",
+            "header": []
+          }
+        }
+      ]
+    },
+    {
+      "name": "Missions",
+      "item": [
+        {
+          "name": "Create Mission with Targets",
+          "request": {
+            "method": "POST",
+            "url": "{{base_url}}/missions/",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"cat_id\": null,\n    \"targets\": [\n        {\n            \"name\": \"Target Alpha\",\n            \"country\": \"Germany\",\n            \"notes\": \"Initial reconnaissance needed\"\n        },\n        {\n            \"name\": \"Target Beta\",\n            \"country\": \"France\",\n            \"notes\": \"\"\n        }\n    ]\n}"
+            }
+          }
+        },
+        {
+          "name": "Create Mission with Cat Assigned",
+          "request": {
+            "method": "POST",
+            "url": "{{base_url}}/missions/",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"cat_id\": 1,\n    \"targets\": [\n        {\n            \"name\": \"Target Gamma\",\n            \"country\": \"Spain\",\n            \"notes\": \"High priority target\"\n        }\n    ]\n}"
+            }
+          }
+        },
+        {
+          "name": "List All Missions",
+          "request": {
+            "method": "GET",
+            "url": "{{base_url}}/missions/",
+            "header": []
+          }
+        },
+        {
+          "name": "Get Single Mission",
+          "request": {
+            "method": "GET",
+            "url": "{{base_url}}/missions/1",
+            "header": []
+          }
+        },
+        {
+          "name": "Assign Cat to Mission",
+          "request": {
+            "method": "PATCH",
+            "url": "{{base_url}}/missions/1/assign",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"cat_id\": 1\n}"
+            }
+          }
+        },
+        {
+          "name": "Delete Mission",
+          "request": {
+            "method": "DELETE",
+            "url": "{{base_url}}/missions/1",
+            "header": []
+          }
+        }
+      ]
+    },
+    {
+      "name": "Targets",
+      "item": [
+        {
+          "name": "Update Target Notes",
+          "request": {
+            "method": "PATCH",
+            "url": "{{base_url}}/targets/1",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"notes\": \"Updated intelligence: Target spotted at location XYZ\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Mark Target as Complete",
+          "request": {
+            "method": "PATCH",
+            "url": "{{base_url}}/targets/1",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"complete\": true\n}"
+            }
+          }
+        },
+        {
+          "name": "Update Notes and Mark Complete",
+          "request": {
+            "method": "PATCH",
+            "url": "{{base_url}}/targets/1",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"notes\": \"Final report: Mission accomplished\",\n    \"complete\": true\n}"
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
+
